@@ -53,7 +53,7 @@ else
   echo "Fetching cilium version $CILIUM_VERSION."
   run_with_sudo mkdir -p "${SNAP_DATA}/tmp/cilium"
   (cd "${SNAP_DATA}/tmp/cilium"
-  run_with_sudo "${SNAP}/usr/bin/curl" --cacert $CA_CERT -L $SOURCE_URI/$CILIUM_VERSION.tar.gz -o "$SNAP_DATA/tmp/cilium/cilium.tar.gz"
+  run_with_sudo cp "${SNAP}/actions/custom/cilium-$CILIUM_VERSION.tar.gz" "$SNAP_DATA/tmp/cilium/cilium.tar.gz"
   if ! run_with_sudo gzip -f -d "$SNAP_DATA/tmp/cilium/cilium.tar.gz"; then
     echo "Invalid version \"$CILIUM_VERSION\". Must be a branch on https://github.com/cilium/cilium."
     exit 1
